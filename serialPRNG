@@ -1,0 +1,11 @@
+#pragma once
+
+extern long __serial_seed;
+
+#define SERIAL_RAND_MAX 32767
+
+#define serial_srand(x) __serial_seed = x
+#define serial_seed __serial_seed
+#define __serial_next(x) (x = x * 1103515245 + 12345)
+#define serial_rand ((unsigned int) (__serial_next(__serial_seed) / 65536) % 32768)
+#define serial_random (serial_rand / SERIAL_RAND_MAX)
